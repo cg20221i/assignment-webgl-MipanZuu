@@ -1,71 +1,110 @@
+'use strict';
+
+/* global THREE */
+
 function main() {
-    var canvas = document.getElementById("myCanvas");
-    var gl = canvas.getContext("webgl");
-  
-    var vertices = [
-      ...AShapeOuter,
-      ...AShapeInner,
-      ...TShape,
-      ...oneShape,
-      ...sixShapeOuter,
-      ...sixShapeInner,
-      ...line,
-      // all coordinate
-    ];
-  
-    // VERTEX SHADER
-    var vertexShaderCode = `
-      attribute vec2 aPosition;
-      attribute vec4 a_color;
-      varying vec4 v_color;
-      void main () {
-        gl_PointSize = 50.0;
-        gl_Position = vec4(aPosition, 0.0, 1.0);
-        v_color = a_color;
-      }
-      `;
-  
-    // Create shader to vertext shader
-    var vertexShader = gl.createShader(gl.VERTEX_SHADER);
-    gl.shaderSource(vertexShader, vertexShaderCode);
-    gl.compileShader(vertexShader);
-  
-    // FRAGMENT SHADER
-    var fragmentShaderCode = `
-          precision mediump float; // useful practice
-          varying vec4 v_color;
-    
-            void main () {
-              gl_FragColor = vec4(0, 1, 1, 1); 
-            }
-      `;
-    var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-    gl.shaderSource(fragmentShader, fragmentShaderCode);
-    gl.compileShader(fragmentShader);
-  
-    var shaderProgram = gl.createProgram();
-    gl.attachShader(shaderProgram, vertexShader);
-    gl.attachShader(shaderProgram, fragmentShader);
-    gl.linkProgram(shaderProgram);
-    gl.useProgram(shaderProgram);
-  
-    var buffrer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffrer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
-    var aPosition = gl.getAttribLocation(shaderProgram, "aPosition");
-    gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
-    gl.enableVertexAttribArray(aPosition);
-    gl.clearColor(0, 0, 0, 0.7);
-  
-    gl.clear(gl.COLOR_BUFFER_BIT);
-  
-    gl.lineWidth(17);
-    gl.drawArrays(gl.TRIANGLES, 0, AShapeOuter.length / 2);
-    gl.drawArrays(gl.TRIANGLES, 9, AShapeInner.length / 2);
-    gl.drawArrays(gl.TRIANGLES, 13, TShape.length / 2);
-    gl.drawArrays(gl.LINE_STRIP, 28, oneShape.length / 2);
-    gl.drawArrays(gl.LINE_LOOP, 105, sixShapeOuter.length / 2);
-    gl.drawArrays(gl.LINE_STRIP, 115, sixShapeInner.length / 2);
-    gl.drawArrays(gl.LINE_LOOP, 135, line.length / 2);
+  const canvas = document.querySelector('#myCanvas');
+  const renderer = new THREE.WebGLRenderer({canvas});
+
+  const fov = 75;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 100;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.z = 5;
+
+  const scene = new THREE.Scene();
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    scene.add(light);
   }
-  
+
+  const geometry = new THREE.Geometry();
+  geometry.vertices.push(
+    new THREE.Vector3(-1, -1,  1),  // 0
+    new THREE.Vector3( 1, -1,  1),  // 1
+    new THREE.Vector3(-1,  1,  1),  // 2
+    new THREE.Vector3( 1,  1,  1),  // 3
+    new THREE.Vector3(-1, -1, -1),  // 4
+    new THREE.Vector3( 1, -1, -1),  // 5
+    new THREE.Vector3(-1,  1, -1),  // 6
+    new THREE.Vector3( 1,  1, -1),  // 7
+  );
+
+  geometry.faces.push(
+     // front
+     new THREE.Face3(0, 3, 2),
+     new THREE.Face3(0, 1, 3),
+     // right
+     new THREE.Face3(1, 7, 3),
+     new THREE.Face3(1, 5, 7),
+     // back
+     new THREE.Face3(5, 6, 7),
+     new THREE.Face3(5, 4, 6),
+     // left
+     new THREE.Face3(4, 2, 6),
+     new THREE.Face3(4, 0, 2),
+     // top
+     new THREE.Face3(2, 7, 6),
+     new THREE.Face3(2, 3, 7),
+     // bottom
+     new THREE.Face3(4, 1, 0),
+     new THREE.Face3(4, 5, 1),
+  );
+
+  function makeInstance(geometry, color, x) {
+    const material = new THREE.MeshBasicMaterial({color});
+
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    cube.position.x = x;
+    return cube;
+  }
+
+  const cubes = [
+    makeInstance(geometry, 0x44FF44,  0),
+    makeInstance(geometry, 0x4444FF, -4),
+    makeInstance(geometry, 0xFF4444,  4),
+  ];
+
+  function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+  }
+
+  function render(time) {
+    time *= 0.001;
+
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
+
+    cubes.forEach((cube, ndx) => {
+      const speed = 1 + ndx * .1;
+      const rot = time * speed;
+      cube.rotation.x = rot;
+      cube.rotation.y = rot;
+    });
+
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+
+main();
