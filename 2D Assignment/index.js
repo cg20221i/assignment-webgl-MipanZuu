@@ -60,7 +60,7 @@ function main() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 
   gl.lineWidth(17);
-  gl.drawArrays(gl.TRIANGLES, 0, AShapeOuter.length / 2);
+  gl.drawArrays(gl.lines, 0, AShapeOuter.length / 2);
   gl.drawArrays(gl.TRIANGLES, 9, AShapeInner.length / 2);
   gl.drawArrays(gl.TRIANGLES, 13, TShape.length / 2);
   gl.drawArrays(gl.LINE_STRIP, 28, oneShape.length / 2);
