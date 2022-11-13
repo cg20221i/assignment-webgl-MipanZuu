@@ -9,7 +9,6 @@ class FontLoader extends Loader {
 	constructor( manager ) {
 
 		super( manager );
-
 	}
 
 	load( url, onLoad, onProgress, onError ) {
