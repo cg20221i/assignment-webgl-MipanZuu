@@ -32,7 +32,7 @@ function main() {
         -0.5, 0, 0, 1, 0, 0, 0, 0, -1,   // Index:  20    
         0, 0.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  21
         0, 0.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  22
-        0.5, 1, 1.4, 1, 0, 0, 0, 0, 0,   // Index:  23
+        0.5, 1, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  23
 
         //right side 
         1, 0.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  24   
@@ -63,7 +63,7 @@ function main() {
         0.5, 1, 0, 1, 0, 0, 0, 0, -1,   // Index:  44   
         0, 0.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  45
         1, 1.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  46
-        0.5, 1, 1.4, 1, 0, 0, 0, 0, 0,   // Index:  47
+        0.5, 1, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  47
 
         //T
         3, 2.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  48  
@@ -86,10 +86,36 @@ function main() {
         3.5, 3, 0, 1, 0, 0, 0, 0, -1,   // Index:  62
         3.5, 3, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  63
 
-        3, 3.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  60
-        3, 3.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  61
-        3.5, 3, 0, 1, 0, 0, 0, 0, -1,   // Index:  62
-        3.5, 3, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  63
+        3, 2.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  64
+        3, 2.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  65
+        3.5, 3, 0, 1, 0, 0, 0, 0, -1,   // Index:  66
+        3.5, 3, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  67
+
+        2.5, 3, 0, 1, 0, 0, 0, 0, -1,   // Index:  68
+        2.5, 3, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  69
+        3, 3.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  70
+        3, 3.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  71
+
+        // for - top of T
+        4, 3.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  72
+        3.5, 4, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  73
+        2, 2.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  74
+        2.5, 2, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  75
+
+        4, 3.5, 1, 1, 0, 0, 0, 0, -1,   // Index:  76
+        3.5, 4, 1, 1, 0, 0, 0, 0, -1,   // Index:  77
+        2, 2.5, 1, 1, 0, 0, 0, 0, -1,   // Index:  78
+        2.5, 2, 1, 1, 0, 0, 0, 0, -1,   // Index:  79
+
+        4, 3.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  80
+        4, 3.5, 1, 1, 0, 0, 0, 0, -1,   // Index:  81
+        3.5, 4, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  82
+        3.5, 4, 1, 1, 0, 0, 0, 0, -1,   // Index:  83
+
+        4, 3.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  84
+        4, 3.5, 1, 1, 0, 0, 0, 0, -1,   // Index:  85
+        3.5, 4, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  86
+        3.5, 4, 1, 1, 0, 0, 0, 0, -1,   // Index:  87
     ];
 
     var indices = [
@@ -111,6 +137,12 @@ function main() {
         52, 53, 54, 52, 54, 55, 
         56, 57, 58, 56, 58, 59,
         60, 61, 62, 60, 62, 63,
+        64, 65, 66, 64, 66, 67,
+        68, 69, 70, 68, 70, 71,
+        //for - top of T
+        72, 73, 74, 72, 74, 75,
+        76, 77, 78, 76, 78, 79,
+        80, 81, 82, 80, 82, 83,
     ];
 
     // Create a linked-list for storing the vertices data in the GPU realm
@@ -302,7 +334,7 @@ function main() {
                 direction = "left";
                 break;
             case 38: // Camera UP
-                camera[1] += 0.05;
+                camera[1] += 1;
                 gl.uniform3fv(uViewerPosition, camera);
                 glMatrix.mat4.lookAt(
                     view,
@@ -313,7 +345,7 @@ function main() {
                 gl.uniformMatrix4fv(uView, false, view);
                 break;
             case 40: // Camera DOWN
-                camera[1] -= 0.05;
+                camera[1] -= 1;
                 gl.uniform3fv(uViewerPosition, camera);
                 glMatrix.mat4.lookAt(
                     view,
@@ -324,7 +356,7 @@ function main() {
                 gl.uniformMatrix4fv(uView, false, view);
                 break;
             case 39: // Camera RIGHT
-                camera[0] += 0.05;
+                camera[0] += 1;
                 gl.uniform3fv(uViewerPosition, camera);
                 glMatrix.mat4.lookAt(
                     view,
@@ -335,7 +367,7 @@ function main() {
                 gl.uniformMatrix4fv(uView, false, view);
                 break;
             case 37: // Camera LEFT
-                camera[0] -= 0.05;
+                camera[0] -= 1;
                 gl.uniform3fv(uViewerPosition, camera);
                 glMatrix.mat4.lookAt(
                     view,
