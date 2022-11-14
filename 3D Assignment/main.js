@@ -636,8 +636,8 @@ function main() {
     var isAnimated = false;
     var theta = 0.0;
     var direction = "";
-    var dX = 0.0;
-    var dY = 0.0;
+    var dX = 0.01;
+    var dY = 0.01;
     // For the model (all linear transformation)
     var uModel = gl.getUniformLocation(shaderProgram, "uModel");
 
@@ -670,7 +670,7 @@ function main() {
     // Ambient
     var uAmbientIntensity = gl.getUniformLocation(shaderProgram, "uAmbientIntensity");
     gl.uniform3fv(uLightConstant, [1.0, 1.0, 1.0]);   // white color
-    gl.uniform1f(uAmbientIntensity, 0.6);             // 40% intensity
+    gl.uniform1f(uAmbientIntensity, 0.6);             // 60% intensity
     // Diffuse
     var uLightPosition = gl.getUniformLocation(shaderProgram, "uLightPosition");
     gl.uniform3fv(uLightPosition, [1.0, 0.0, 1.0]);
@@ -785,7 +785,7 @@ function main() {
         }
     }
     function onKeyUp(event) {
-        direction = "";
+        direction = "back";
     }
     function onKeyPress(event) {
         console.log('keypress');
@@ -834,7 +834,7 @@ function main() {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
         var model = glMatrix.mat4.create();
         if (isAnimated) {
-            theta += 0.01;
+            theta += 0.00001;
         }
         switch (direction) {
             case "up":
