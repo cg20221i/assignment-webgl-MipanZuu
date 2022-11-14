@@ -598,7 +598,7 @@ function main() {
     // Ambient
     var uAmbientIntensity = gl.getUniformLocation(shaderProgram, "uAmbientIntensity");
     gl.uniform3fv(uLightConstant, [1.0, 1.0, 1.0]);   // white color
-    gl.uniform1f(uAmbientIntensity, 0.4);             // 40% intensity
+    gl.uniform1f(uAmbientIntensity, 0.6);             // 40% intensity
     // Diffuse
     var uLightPosition = gl.getUniformLocation(shaderProgram, "uLightPosition");
     gl.uniform3fv(uLightPosition, [1.0, 0.0, 1.0]);
@@ -796,22 +796,6 @@ function main() {
             gl.UNSIGNED_SHORT, 0);
         requestAnimationFrame(render);
 
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawBall();
-            
-            if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-                dx = -dx;
-            }
-            if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-                dy = -dy;
-            }
-            
-            x += dx;
-            y += dy;
-        }
-        
-        setInterval(draw, 10);
     }
     requestAnimationFrame(render);
 }
