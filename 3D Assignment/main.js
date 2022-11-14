@@ -4,20 +4,20 @@ function main() {
 
     var vertices = [
         // Face-Left-Back 4       // Red      // Surface orientation
-        0, -0.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  0    
-        -0.5, 0, 0, 1, 0, 0, 0, 0, -1,   // Index:  1
-        0, 0.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  2
-        0.5, 0, 0, 1, 0, 0, 0, 0, -1,   // Index:  3
+        0, -0.5, 0, 1, 0.5, 1, 0, 0, -1,   // Index:  0    
+        -0.5, 0, 0, 1, 0.5, 1, 0, 0, -1,   // Index:  1
+        0, 0.5, 0, 1, 0.5, 1, 0, 0, -1,   // Index:  2
+        0.5, 0, 0, 1, 0.5, 1, 0, 0, -1,   // Index:  3
         //scasca
-        0.5, 0, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  4    
-        0, 0.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  5
-        0.5, 1, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  6
-        1, 0.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  7
+        0.5, 0, 1.4, 1, 0.5, 1, 0, 0, -1,   // Index:  4    
+        0, 0.5, 1.4, 1, 0.5, 1, 0, 0, -1,   // Index:  5
+        0.5, 1, 1.4, 1, 0.5, 1, 0, 0, -1,   // Index:  6
+        1, 0.5, 1.4, 1, 0.5, 1, 0, 0, -1,   // Index:  7
         //scasca
-        0, -0.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  8    
-        0.5, 0, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  9
-        -0.5, 0, 0, 1, 0, 0, 0, 0, -1,   // Index:  10
-        0, 0.5, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  11
+        0, -0.5, 0, 1, 0.5, 1, 0, 0, -1,   // Index:  8    
+        0.5, 0, 1.4, 1, 0.5, 1, 0, 0, -1,   // Index:  9
+        -0.5, 0, 0, 1, 0.5, 1, 0, 0, -1,   // Index:  10
+        0, 0.5, 1.4, 1, 0.5, 1, 0, 0, -1,   // Index:  11
 
         0, 0.5, 0, 1, 0, 0, 0, 0, -1,   // Index:  12    
         0.5, 1, 1.4, 1, 0, 0, 0, 0, -1,   // Index:  13
@@ -513,8 +513,8 @@ function main() {
     var fragmentShaderCode = `
         precision mediump float;
         varying vec3 vColor;
-        uniform vec3 uLightConstant;      // It represents the light color
-        uniform float uAmbientIntensity;  // It represents the light intensity
+        uniform vec3 uLightConstant;      
+        uniform float uAmbientIntensity; 
         varying vec3 vPosition;
         varying vec3 vNormal;
         uniform vec3 uLightPosition;
@@ -570,14 +570,14 @@ function main() {
     var uModel = gl.getUniformLocation(shaderProgram, "uModel");
 
     // For the camera
-    var camera = [0.0, 0.0, 7.5]; //7.5 unit from the origin outwards the screen
+    var camera = [2.0, 0.0, 7.5]; //7.5 unit from the origin outwards the screen
     var uView = gl.getUniformLocation(shaderProgram, "uView");
     var view = glMatrix.mat4.create();  // Create an identity matrix
     glMatrix.mat4.lookAt(
         view,
         camera,
-        [camera[0], 0.0, 0.0],
-        [0.0, 1.0, 0.0]
+        [camera[0], 5.0, -10.0],
+        [-10.0, 10.0, 10.0]
     );
     gl.uniformMatrix4fv(uView, false, view);
 
@@ -586,7 +586,7 @@ function main() {
     var perspective = glMatrix.mat4.create();
     glMatrix.mat4.perspective(
         perspective,
-        ((Math.PI / 2) - 13),  // 75 degrees 
+        ((Math.PI / 2) - 15),  //75 degrees of camera 
         1.0,
         0.5,
         50.0
@@ -795,6 +795,23 @@ function main() {
         gl.drawElements(gl.TRIANGLES, indices.length,
             gl.UNSIGNED_SHORT, 0);
         requestAnimationFrame(render);
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+            
+            if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                dx = -dx;
+            }
+            if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+                dy = -dy;
+            }
+            
+            x += dx;
+            y += dy;
+        }
+        
+        setInterval(draw, 10);
     }
     requestAnimationFrame(render);
 }
