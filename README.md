@@ -66,3 +66,33 @@ glMatrix.mat4.perspective(
 ```js
 var camera = [1.0, 0.0, 7.5]; //7.5 unit from the origin outwards the screen
 ```
+
+### 4. (Automatically) Translate the first digit object horizontally, bouncing back between the right and left edges of the canvas with a speed of 0.0xxx units per frame where xxx is the last three digits of your student ID.
+
+### 5. (Automatically) Scale the second digit object, bouncing back between its half-size and double-size with a scaling speed of your choice (it's up to you).
+
+### 6. (Interactively) Rotate the first alphabet about the Y axis with an angular speed of your choice (it's up to you) when the left or right arrow key is pressed.
+
+```js
+switch (direction) {
+            case "up":
+                dY += 0.1;
+                break;
+            case "down":
+                dY -= 0.1;
+                break;
+            case "left":
+                dX -= 0.1;
+                break;
+            case "right":
+                dX += 0.1;
+                break;
+
+            default:
+                break;
+        }
+```
+for the complete code you can chek on my github files, because it is to much if I copy all of the code.
+
+### 7. (Interactively) Rotate the second alphabet about the X axis with an angular speed of your choice (it's up to you) when the up or down key is pressed.
+
