@@ -44,3 +44,25 @@ background-size: 100% 100%;">
 </body>z
 </html>
 ```
+
+### 2. Redefine the vertices data of the two digits and two alphabets so they are extruded into 3D objects. In other words, equip the vertices data with z values.
+
+![](https://i.ibb.co/x7zpcQZ/Screenshot-2022-11-14-at-23-33-03.png)
+
+### 3. With the help of glMatrix library:
+### a. Set the camera's perspective with a field of view of 75 degrees, a square aspect ratio, a near clip of 0.5, and a far clip of 50.0.
+
+```js
+glMatrix.mat4.perspective(
+        perspective,
+        ((Math.PI / 2) - 15),  //75 degrees of camera 
+        1.0,
+        0.5,
+        50.0
+    );
+```
+### b.Set the camera's z-position 7.5 units back from the origin, yet keep the camera looking at the origin.
+
+```js
+var camera = [1.0, 0.0, 7.5]; //7.5 unit from the origin outwards the screen
+```
