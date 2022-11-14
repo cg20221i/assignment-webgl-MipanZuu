@@ -642,7 +642,7 @@ function main() {
     var uModel = gl.getUniformLocation(shaderProgram, "uModel");
 
     // For the camera
-    var camera = [2.0, 0.0, 7.5]; //7.5 unit from the origin outwards the screen
+    var camera = [1.0, 0.0, 7.5]; //7.5 unit from the origin outwards the screen
     var uView = gl.getUniformLocation(shaderProgram, "uView");
     var view = glMatrix.mat4.create();  // Create an identity matrix
     glMatrix.mat4.lookAt(
