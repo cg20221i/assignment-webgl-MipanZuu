@@ -75,12 +75,6 @@ var camera = [1.0, 0.0, 7.5]; //7.5 unit from the origin outwards the screen
 
 ```js
 switch (direction) {
-            case "up":
-                dY += 0.1;
-                break;
-            case "down":
-                dY -= 0.1;
-                break;
             case "left":
                 dX -= 0.1;
                 break;
@@ -95,4 +89,15 @@ switch (direction) {
 for the complete code you can chek on my github files, because it is to much if I copy all of the code.
 
 ### 7. (Interactively) Rotate the second alphabet about the X axis with an angular speed of your choice (it's up to you) when the up or down key is pressed.
-
+```js
+switch (direction) {
+            case "up":
+                dY += 0.1;
+                break;
+            case "down":
+                dY -= 0.1;
+                break;
+            default:
+                break;
+        }
+```
