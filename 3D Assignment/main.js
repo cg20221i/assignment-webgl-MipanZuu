@@ -2,6 +2,8 @@ function main() {
     var canvas = document.getElementById("myCanvas");
     var gl = canvas.getContext("webgl");
 
+    
+
     var vertices = [
         // Face-Left-Back 4       // Red      // Surface orientation
         0, -0.5, 0, 0, 0.4, 1, 0, 0, -1,   // Index:  0    
@@ -445,10 +447,6 @@ function main() {
         4, 3.5, -3.3, 1, 0, 0, 0, 0, -1,   // Index:  230
         4, 3.5, -2.3, 1, 0, 0, 0, 0, -1,   // Index:  231
 
-        3, 2.5, -2.3, 1, 0, 0, 0, 0, -1,   // Index:  228 
-        3, 2.5, -3.3, 1, 0, 0, 0, 0, -1,   // Index:  229
-        4, 3.5, -2.3, 1, 0, 0, 0, 0, -1,   // Index:  230
-        4, 3.5, -3.3, 1, 0, 0, 0, 0, -1,   // Index:  231
     ];
 
     var indices = [
@@ -544,8 +542,6 @@ function main() {
         321, 322, 323, 321, 323, 324,
         325, 326, 327, 325, 327, 328,
         329, 330, 331, 329, 331, 332,
-        333, 334, 335, 333, 335, 336,
-
     ];
 
     // Create a linked-list for storing the vertices data in the GPU realm
