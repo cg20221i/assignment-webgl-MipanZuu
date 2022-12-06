@@ -226,43 +226,58 @@ function main() {
         1.2,  -0.7,   1,      1, 0.5, 0,    -1, 0, 0,   // Index: 74
         1.2,  -0.7, 0.5,      1, 0.5, 0,   -1, 0, 0,   // Index: 75
 
-        1.2, -0.2, 1,         0, 0.5, 0.5,   1, 1, 1,   // Index:  0    
+        0.9, -0.2, 1,         0, 0.5, 0.5,   1, 1, 1,   // Index:  0    
         0.3, -0.2, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  1
-        0.3, -1.5, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  2
-        1.2, -1.5, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  3
+        0.3, -0.4, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  2
+        0.9, -0.4, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  3
+
+        0.9, -0.2, 0.5,         0, 0.5, 0.5,   1, 1, 1,   // Index:  0    
+        0.3, -0.2, 0.5,        0, 0.5, 0.5,    1, 1, 1,   // Index:  1
+        0.3, -0.4, 0.5,        0, 0.5, 0.5,    1, 1, 1,   // Index:  2
+        0.9, -0.4, 0.5,        0, 0.5, 0.5,    1, 1, 1,   // Index:  3
+
+        1.2, -0.9, 0.5,         0, 0.5, 0.5,   1, 1, 1,   // Index:  0    
+        0.3, -0.9, 0.5,        0, 0.5, 0.5,    1, 1, 1,   // Index:  1
+        0.3, -0.7, 0.5,        0, 0.5, 0.5,    1, 1, 1,   // Index:  2
+        1.2, -0.7, 0.5,        0, 0.5, 0.5,    1, 1, 1,   // Index:  3
+
+        1.2, -0.9, 1,         0, 0.5, 0.5,   1, 1, 1,   // Index:  0    
+        0.3, -0.9, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  1
+        0.3, -0.7, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  2
+        1.2, -0.7, 1,        0, 0.5, 0.5,    1, 1, 1,   // Index:  3
         
 
 
         // Face A       // Red      // Surface orientation
-        -1, -1, -2,     1, 0, 0,    0, 0, -1,   // Index:  0    
-         1, -1, -2,     1, 0, 0,    0, 0, -1,   // Index:  1
-         1,  1, -2,     1, 0, 0,    0, 0, -1,   // Index:  2
-        -1,  1, -2,     1, 0, 0,    0, 0, -1,   // Index:  3
+        -0.8, 0, -1,       1, 1, 1,    0, 0, -1,   // Index:  0    
+         0, 0, -1,       1, 1, 1,    0, 0, -1,   // Index:  1
+         0,  1, -1,       1, 1, 1,    0, 0, -1,   // Index:  2
+        -0.8,  1, -1,       1, 1, 1,    0, 0, -1,   // Index:  3
         // Face B       // Yellow
-        -1, -1,  0,     1, 1, 0,    0, 0, 1,    // Index:  4
-         1, -1,  0,     1, 1, 0,    0, 0, 1,    // Index:  5
-         1,  1,  0,     1, 1, 0,    0, 0, 1,    // Index:  6
-        -1,  1,  0,     1, 1, 0,    0, 0, 1,    // Index:  7
+        -0.8, 0,  0,      1, 1, 1,    0, 0, 1,    // Index:  4
+         0, 0,  0,       1, 1, 1,    0, 0, 1,    // Index:  5
+         0,  1,  0,       1, 1, 1,    0, 0, 1,    // Index:  6
+        -0.8,  1,  0,       1, 1, 1,    0, 0, 1,    // Index:  7
         // Face C       // Green
-        -1, -1, -2,     0, 1, 0,    -1, 0, 0,   // Index:  8
-        -1,  1, -2,     0, 1, 0,    -1, 0, 0,   // Index:  9
-        -1,  1,  0,     0, 1, 0,    -1, 0, 0,   // Index: 10
-        -1, -1,  0,     0, 1, 0,    -1, 0, 0,   // Index: 11
+        -0.8, 0, -1,       1, 1, 1,    -1, 0, 0,   // Index:  8
+        -0.8,  1, -1,       1, 1, 1,   -1, 0, 0,   // Index:  9
+        -0.8,  1,  0,      1, 1, 1,    -1, 0, 0,   // Index: 10
+        -0.8, 0,  0,       1, 1, 1,    -1, 0, 0,   // Index: 11
         // Face D       // Blue
-         1, -1, -2,     0, 0, 1,    1, 0, 0,    // Index: 12
-         1,  1, -2,     0, 0, 1,    1, 0, 0,    // Index: 13
-         1,  1,  0,     0, 0, 1,    1, 0, 0,    // Index: 14
-         1, -1,  0,     0, 0, 1,    1, 0, 0,    // Index: 15
+         0, 0, -1,       1, 1, 1,    1, 0, 0,    // Index: 12
+         0,  1, -1,       1, 1, 1,    1, 0, 0,    // Index: 13
+         0,  1,  0,     1, 1, 1,    1, 0, 0,    // Index: 14
+         0, 0,  0,      1, 1, 1,   1, 0, 0,    // Index: 15
         // Face E       // Orange
-        -1, -1, -2,     1, 0.5, 0,  0, -1, 0,   // Index: 16
-        -1, -1,  0,     1, 0.5, 0,  0, -1, 0,   // Index: 17
-         1, -1,  0,     1, 0.5, 0,  0, -1, 0,   // Index: 18
-         1, -1, -2,     1, 0.5, 0,  0, -1, 0,   // Index: 19
+        -0.8, 0, -1,       1, 1, 1,  0, -1, 0,   // Index: 16
+        -0.8, 0,  0,       1, 1, 1,  0, -1, 0,   // Index: 17
+         0, 0,  0,      1, 1, 1,  0, -1, 0,   // Index: 18
+         0, 0, -1,      1, 1, 1,  0, -1, 0,   // Index: 19
         // Face F       // White
-        -1,  1, -2,     1, 1, 1,    0, 1, 0,    // Index: 20
-        -1,  1,  0,     1, 1, 1,    0, 1, 0,    // Index: 21
-         1,  1,  0,     1, 1, 1,    0, 1, 0,    // Index: 22
-         1,  1, -2,     1, 1, 1,    0, 1, 0     // Index: 23
+        -0.8,  1, -1,     1, 1, 1,    0, 1, 0,    // Index: 20
+        -0.8,  1,  0,     1, 1, 1,    0, 1, 0,    // Index: 21
+         0,  1,  0,     1, 1, 1,    0, 1, 0,    // Index: 22
+         0,  1, -1,     1, 1, 1,    0, 1, 0     // Index: 23
     ];
 
     var indices = [
@@ -323,9 +338,9 @@ function main() {
         188, 189, 190, 188, 190, 191,
         192, 193, 194, 192, 194, 195,
         196, 197, 198, 196, 198, 199,
-        // 200, 201, 202, 200, 202, 203,
-        // 204, 205, 206, 204, 206, 207,
-        // 208, 209, 210, 208, 210, 211,
+        200, 201, 202, 200, 202, 203,
+        204, 205, 206, 204, 206, 207,
+        208, 209, 210, 208, 210, 211,
         // 212, 213, 214, 212, 214, 215,
         // 216, 217, 218, 216, 218, 219,
         // 220, 221, 222, 220, 222, 223,
@@ -494,10 +509,10 @@ function main() {
     // Ambient
     var uAmbientIntensity = gl.getUniformLocation(shaderProgram, "uAmbientIntensity");
     gl.uniform3fv(uLightConstant, [1.0, 1.0, 1.0]);   // white color
-    gl.uniform1f(uAmbientIntensity, 0.4);             // 60% intensity
+    gl.uniform1f(uAmbientIntensity, 0.416);             // 60% intensity
     // Diffuse
     var uLightPosition = gl.getUniformLocation(shaderProgram, "uLightPosition");
-    gl.uniform3fv(uLightPosition, [0.0, 0.0, 4.8]);
+    gl.uniform3fv(uLightPosition, [-0.8, 0.5, 1.0]);
     var uNormalModel = gl.getUniformLocation(shaderProgram, "uNormalModel");
     // Specular
     var uViewerPosition = gl.getUniformLocation(shaderProgram, "uViewerPosition");
@@ -559,6 +574,36 @@ function main() {
             case 65: // Object LEFT
                 direction = "left";
                 break;
+            
+            case 73: // Object UP
+                direction = "up";
+                break;
+            case 75: // Object Down
+                direction = "down";
+                break;
+           case 74:
+       
+               camera[0] += 0.05;
+                gl.uniform3fv(uViewerPosition, camera);
+                glMatrix.mat4.lookAt(
+                    view,
+                    camera,
+                    [camera[0], 0.0, -10.0],
+                    [0.0, 1.0, 0.0]
+                );
+                gl.uniformMatrix4fv(uView, false, view);
+               break;
+           case 76:
+               camera[0] -= 0.05;
+               gl.uniform3fv(uViewerPosition, camera);
+               glMatrix.mat4.lookAt(
+                   view,
+                   camera,
+                   [camera[0], 0.0, -10.0],
+                   [0.0, 1.0, 0.0]
+               );
+               gl.uniformMatrix4fv(uView, false, view);
+               break;
             case 38: // Camera UP
                 camera[1] += 0.05;
                 gl.uniform3fv(uViewerPosition, camera);
